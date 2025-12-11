@@ -1,0 +1,249 @@
+/* Color Palette */
+:root {
+    --pink-light: #fce4ec; /* Background light pink */
+    --pink-main: #e91e63; /* Main pink text/border */
+    --blue-light: #e3f2fd; /* Background light blue */
+    --blue-main: #2196f3; /* Main blue text/button */
+    --text-color: #444;
+}
+
+/* Base Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--blue-light); /* Default light background */
+    text-align: center;
+    transition: background-color 0.5s;
+}
+
+/* Page Structure */
+.page {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+    min-height: 450px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Themeing - Matching the dual-color requirement */
+.pink-theme {
+    background: var(--pink-light); /* Pink Page Background */
+    border: 5px solid var(--pink-main);
+}
+
+.blue-theme {
+    background: var(--blue-light); /* Blue Page Background */
+    border: 5px solid var(--blue-main);
+}
+
+/* Text Styling */
+.title-text {
+    font-size: 2.8em;
+    font-weight: 900;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.subtitle-text {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+/* Images/Graphics */
+.main-graphic {
+    width: 70%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.main-button {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.blue-btn {
+    background-color: var(--blue-main);
+    color: white;
+}
+
+.blue-btn:hover {
+    background-color: #1976d2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+}
+
+.mini-btn {
+    padding: 8px 20px;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+/* Gift Selection Layout (Page 2) */
+.gift-options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.gift-item {
+    cursor: pointer;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+}
+
+.gift-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(33, 150, 243, 0.2);
+}
+
+.icon {
+    font-size: 3.5em;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--pink-main); /* Icons color is pink */
+}
+
+/* Envelope Closer Button (Matching Video Style) */
+.envelope-closer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.envelope-button {
+    width: 30px;
+    height: 30px;
+    background-color: white; /* The "button" part of the envelope */
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 3px solid var(--blue-main);
+    transition: transform 0.3s;
+}
+
+.envelope-button::before, .envelope-button::after {
+    /* To create the 'sewn' look like in the video */
+    content: '';
+    position: absolute;
+    background-color: var(--blue-main);
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+}
+.envelope-button:hover {
+    transform: scale(1.1);
+}
+
+/* Modal and Letter Styling */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 0.3s;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.letter-card {
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    background-color: var(--pink-light); /* Pink background for the letter content */
+    border: 2px solid var(--pink-main); /* Pink border for the letter */
+}
+
+.letter-title {
+    font-size: 1.8em;
+    color: var(--pink-main);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sign-off {
+    margin-top: 20px;
+    font-style: italic;
+    font-weight: bold;
+    color: var(--blue-main); /* Blue signature for contrast */
+    text-align: right;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes zoomIn {
+    from { transform: scale(0.8); }
+    to { transform: scale(1); }
+}
