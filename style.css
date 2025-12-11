@@ -1,249 +1,183 @@
 /* Color Palette */
 :root {
-    --pink-light: #fce4ec; /* Background light pink */
-    --pink-main: #e91e63; /* Main pink text/border */
-    --blue-light: #e3f2fd; /* Background light blue */
-    --blue-main: #2196f3; /* Main blue text/button */
+    --pink-light: #fce4ec; /* Light pink background */
+    --pink-main: #e91e63; /* Main pink text/border/decorations */
+    --blue-main: #2196f3; /* Dominant blue background/buttons */
     --text-color: #444;
 }
 
 /* Base Styling */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Caveat', cursive, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--blue-light); /* Default light background */
+    background-color: var(--blue-main); /* Dominant Blue Background */
     text-align: center;
-    transition: background-color 0.5s;
+    overflow: hidden;
 }
 
-/* Page Structure */
-.page {
-    width: 100%;
-    max-width: 650px;
-    padding: 40px;
+/* E-Card Structure (The central floating card) */
+.e-card {
+    width: 90%;
+    max-width: 600px;
+    height: 90vh;
+    max-height: 850px;
+    margin: 20px;
     box-sizing: border-box;
-    background-color: white;
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
-    min-height: 450px;
-    position: relative;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease;
     overflow: hidden;
 }
 
 .hidden {
-    display: none;
     opacity: 0;
-    transform: scale(0.95);
+    pointer-events: none;
 }
 
 .active {
-    display: block;
     opacity: 1;
-    transform: scale(1);
+    pointer-events: auto;
 }
 
-/* Themeing - Matching the dual-color requirement */
-.pink-theme {
-    background: var(--pink-light); /* Pink Page Background */
-    border: 5px solid var(--pink-main);
+/* SCREEN 1: ENVELOPE (Blue Focus) */
+.envelope-screen {
+    background-color: var(--blue-main); /* Solid Blue Screen */
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.blue-theme {
-    background: var(--blue-light); /* Blue Page Background */
-    border: 5px solid var(--blue-main);
+.envelope-closure {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-/* Text Styling */
-.title-text {
-    font-size: 2.8em;
-    font-weight: 900;
-    margin-bottom: 5px;
-    color: var(--text-color);
+.prompt-text {
+    color: white;
+    font-size: 1.8em;
+    position: absolute;
+    top: -50px;
 }
 
-.subtitle-text {
-    font-size: 1.5em;
-    font-weight: 500;
-    color: var(--text-color);
-    margin-bottom: 30px;
+.envelope-button {
+    width: 80px;
+    height: 80px;
+    background-color: var(--pink-light); /* Button base is light pink */
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border: 4px solid var(--pink-main); /* Pink border to match decorations */
+    transition: transform 0.2s;
 }
 
-/* Images/Graphics */
-.main-graphic {
-    width: 70%;
-    max-width: 250px;
-    height: auto;
+.envelope-button:hover {
+    transform: scale(1.1);
+}
+
+/* Pink Decorations (Using only Pink for design elements) */
+.pink-deco {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    /* This uses SVG/base64 for a clean pink flower/heart shape */
+}
+
+.pink-deco.flower-top-right {
+    top: 30px;
+    right: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23e91e63" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>') no-repeat center center / contain;
+}
+.pink-deco.hearts-bottom-left {
+    bottom: 30px;
+    left: 30px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23e91e63" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center center / contain;
+    width: 50px;
+    height: 50px;
+}
+
+
+/* SCREEN 2: LETTER (Pink/White Content) */
+.letter-screen {
+    background-color: white;
+    z-index: 20;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.letter-content {
+    background-color: var(--pink-light);
+    border: 3px solid var(--pink-main);
+    padding: 20px;
+    border-radius: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.letter-title {
+    font-size: 2.5em;
+    color: var(--pink-main);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo-placeholder {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-photo {
+    width: 50%;
+    max-width: 200px;
     border-radius: 10px;
+    border: 3px solid var(--pink-main);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
 }
 
-/* Buttons */
-.main-button {
-    padding: 12px 30px;
+.letter-body {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.sign-off {
+    margin-top: 30px;
+    font-weight: 700;
+    color: var(--pink-main);
+    text-align: right;
+    font-size: 1.4em;
+}
+
+/* Close Button */
+.close-button {
+    margin-top: 20px;
+    padding: 10px 25px;
     font-size: 1.1em;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s;
     font-weight: bold;
-    text-transform: uppercase;
-}
-
-.blue-btn {
-    background-color: var(--blue-main);
+    background-color: var(--blue-main); /* Blue button for the final action */
     color: white;
 }
-
-.blue-btn:hover {
+.close-button:hover {
     background-color: #1976d2;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
-}
-
-.mini-btn {
-    padding: 8px 20px;
-    font-size: 0.9em;
-    margin-top: 15px;
-}
-
-/* Gift Selection Layout (Page 2) */
-.gift-options {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.gift-item {
-    cursor: pointer;
-    padding: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border-radius: 10px;
-}
-
-.gift-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(33, 150, 243, 0.2);
-}
-
-.icon {
-    font-size: 3.5em;
-    display: block;
-    margin-bottom: 5px;
-    color: var(--pink-main); /* Icons color is pink */
-}
-
-/* Envelope Closer Button (Matching Video Style) */
-.envelope-closer {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.envelope-button {
-    width: 30px;
-    height: 30px;
-    background-color: white; /* The "button" part of the envelope */
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border: 3px solid var(--blue-main);
-    transition: transform 0.3s;
-}
-
-.envelope-button::before, .envelope-button::after {
-    /* To create the 'sewn' look like in the video */
-    content: '';
-    position: absolute;
-    background-color: var(--blue-main);
-    width: 2px;
-    height: 2px;
-    border-radius: 50%;
-}
-.envelope-button:hover {
-    transform: scale(1.1);
-}
-
-/* Modal and Letter Styling */
-.modal {
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-    animation: zoomIn 0.3s;
-}
-
-.close-button {
-    color: #aaa;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.letter-card {
-    padding: 25px;
-    border-radius: 15px;
-    text-align: left;
-    background-color: var(--pink-light); /* Pink background for the letter content */
-    border: 2px solid var(--pink-main); /* Pink border for the letter */
-}
-
-.letter-title {
-    font-size: 1.8em;
-    color: var(--pink-main);
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.sign-off {
-    margin-top: 20px;
-    font-style: italic;
-    font-weight: bold;
-    color: var(--blue-main); /* Blue signature for contrast */
-    text-align: right;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes zoomIn {
-    from { transform: scale(0.8); }
-    to { transform: scale(1); }
 }
