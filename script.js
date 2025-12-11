@@ -1,51 +1,32 @@
-// Function to handle page transitions
-function goToPage(pageNumber) {
-    const pages = document.querySelectorAll('.page');
-    const targetPageId = 'page' + pageNumber;
+// Function to open the letter content after pressing the central button
+function openLetterContent() {
+    const envelopeScreen = document.getElementById('envelopeScreen');
+    const letterScreen = document.getElementById('letterScreen');
+    
+    // 1. Hide the Blue Envelope Screen
+    envelopeScreen.classList.remove('active');
+    envelopeScreen.classList.add('hidden');
 
-    pages.forEach(page => {
-        if (page.id === targetPageId) {
-            // Show target page
-            page.classList.remove('hidden');
-            page.classList.add('active');
-        } else {
-            // Hide other pages
-            page.classList.add('hidden');
-            page.classList.remove('active');
-        }
-    });
-}
-
-// Function to simulate the envelope button closing/transition
-function showEnvelopeAnimation() {
-    // For a simple transition, we just go back to page 1.
-    // In a real match, this would trigger a complex CSS animation, 
-    // but for functionality, we revert.
-    goToPage(1);
-}
-
-// Function to show the letter modal
-function showLetter() {
-    const modal = document.getElementById('letterModal');
-    modal.classList.remove('hidden');
-    // Ensure the modal is displayed block for animation to work
-    modal.style.display = 'flex';
-}
-
-// Function to hide the letter modal
-function hideLetter() {
-    const modal = document.getElementById('letterModal');
-    // Hide after animation
-    modal.classList.add('hidden');
+    // 2. Show the Pink Letter Screen
+    // We use a small timeout to ensure the transition is smooth
     setTimeout(() => {
-        modal.style.display = 'none';
-    }, 300); // Matches the CSS animation duration
+        letterScreen.classList.remove('hidden');
+        letterScreen.classList.add('active');
+    }, 100); 
 }
 
-// Close modal when clicking outside of the content
-window.onclick = function(event) {
-    const modal = document.getElementById('letterModal');
-    if (event.target == modal) {
-        hideLetter();
-    }
+// Function to close the letter and return to the Envelope/Home Screen
+function closeLetter() {
+    const envelopeScreen = document.getElementById('envelopeScreen');
+    const letterScreen = document.getElementById('letterScreen');
+
+    // 1. Hide the Letter Screen
+    letterScreen.classList.remove('active');
+    letterScreen.classList.add('hidden');
+    
+    // 2. Show the Envelope Screen
+    setTimeout(() => {
+        envelopeScreen.classList.remove('hidden');
+        envelopeScreen.classList.add('active');
+    }, 100);
 }
