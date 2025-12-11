@@ -5,66 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Virtual Gift For You</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="page1" class="page active pink-theme">
-        <h1 class="title-text">Happy Monthsary!</h1>
-        <h2 class="subtitle-text">My Love!</h2>
-        <div class="image-placeholder">
-            <img src="https://i.imgur.com/8Qp4R3Q.png" alt="Cute Bears Hugging" class="main-graphic">
-        </div>
-        
-        <button onclick="goToPage(2)" class="main-button blue-btn">
-            Open Your Gift
-        </button>
-    </div>
-
-    <div id="page2" class="page hidden blue-theme">
-        <div class="gift-box">
-            <h1 class="title-text">GIFTS FOR YOU</h1>
-            <h3 class="subtitle-text">Choose any gift you want</h3>
-
-            <div class="gift-options">
-                <div class="gift-item" onclick="alert('A photo of us, specially for you!')">
-                    <span class="icon camera-icon">📸</span>
-                    <p>Photo</p>
-                </div>
-
-                <div class="gift-item" onclick="showLetter()">
-                    <span class="icon envelope-icon">💌</span>
-                    <p>Letter</p>
-                </div>
-
-                <div class="gift-item" onclick="alert('Another surprise awaits!')">
-                    <span class="icon gift-box-icon">🎁</span>
-                    <p>Surprise</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="envelope-closer" onclick="showEnvelopeAnimation()">
+    <div id="envelopeScreen" class="e-card envelope-screen active">
+        <div class="envelope-closure" onclick="openLetterContent()">
+            <h2 class="prompt-text">Click to open your surprise!</h2>
             <div class="envelope-button"></div>
         </div>
         
+        <div class="pink-deco flower-top-right"></div>
+        <div class="pink-deco hearts-bottom-left"></div>
     </div>
 
-    <div id="letterModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close-button" onclick="hideLetter()">&times;</span>
-            <div class="letter-card pink-border">
-                <h3 class="letter-title">My letter to you</h3>
-                <p>
-                    **To my little princess,**
-                    <br><br>
-                    You have a heart too good for this awful world but that's okay because I promise to forever protect your little fragile heart. I just wish you could see yourself through my eyes and know how much I love, respect, and cherish everything you do.
-                    <br><br>
-                    My precious girl, watching you smile has never once failed to make me smile because you are my joy, my happiness and my peace. You were always my 'I must keep this lucky woman alive'. I am so proud of you and I know we will grow so brightly as we live the rest of our lives together.
-                </p>
-                <div class="sign-off">I heart you Always & Forever!</div>
-                <button onclick="hideLetter()" class="main-button blue-btn mini-btn">Close</button>
+    <div id="letterScreen" class="e-card letter-screen hidden">
+        <div class="letter-content">
+            <h2 class="letter-title">Happy Monthsary! My Love!</h2>
+            
+            <div class="photo-placeholder">
+                <img src="https://i.imgur.com/P4Q0tYJ.png" alt="Couple's Photo" class="main-photo">
             </div>
+
+            <p class="letter-body">
+                I am so grateful to be able to call you mine. I must keep this lucky man alive. You have a heart too good for this awful world but that's okay because I promise to forever protect your little fragile heart. I just wish you could see yourself through my eyes and know how much I love, respect, and cherish everything you do.
+            </p>
+            
+            <div class="sign-off">I heart you Always & Forever!</div>
         </div>
+        
+        <button class="close-button blue-btn" onclick="closeLetter()">Close Letter</button>
     </div>
 
 </body>
